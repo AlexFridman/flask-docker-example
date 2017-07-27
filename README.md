@@ -16,16 +16,7 @@ docker run -d -p 5000:5000 flask-sample-one
 ```
 
 Пример обращения к модели
-
+Отправка на вход json нагрузки из файла X.json и сохранение предсказаний в файл predictions.csv
 ```bash
-$ curl -H "Content-Type: application/json" -X POST -d '{"data":"data"}' http://127.0.0.1:5000/predict
-{
-  "X": {
-    "data": "data"
-  },
-  "y_pred": [
-    1.0,
-    1.0
-  ]
-}
+curl -vX POST http://127.0.0.1:5000/predict -d @X.json --header "Content-Type: application/json" -o predictions.csv
 ```
