@@ -9,8 +9,10 @@ model = load_model()
 
 @app.route('/predict', methods=['GET', 'POST'])
 def predict():
+    # data has to be a list of dict with a required field "dialogId"
     data = request.get_json(silent=True)
 
+    # y_pred has to be a (n, 2) list (1st column corresponds to Alice's scores)
     y_pred = app.model.predict(data)
     csv = create_csv(data, y_pred)
 
